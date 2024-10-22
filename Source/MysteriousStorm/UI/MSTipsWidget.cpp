@@ -12,7 +12,7 @@ void UMSTipsWidget::ShowTips(FString Info)
 	}
 
 	TextInfo = Info;
-	GetWorld()->GetTimerManager().SetTimer(DelayHandle, this, &UMSTipsWidget::ShowTipsInternal, 0.3f, false);
+	ShowTipsInternal();
 }
 
 void UMSTipsWidget::ShowTipsInternal()

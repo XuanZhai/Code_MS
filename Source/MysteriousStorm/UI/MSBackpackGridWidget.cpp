@@ -364,7 +364,7 @@ void UMSBackpackGridWidget::OnEnterItemWidget(UMSItemData* TargetItemData)
 {
 	UMSSpecialItemData* SpecialItemData = Cast<UMSSpecialItemData>(TargetItemData);
 
-	if (!SpecialItemData->bIsGridType)
+	if (!SpecialItemData || !SpecialItemData->bIsGridType)
 	{
 		return;
 	}
@@ -433,9 +433,12 @@ void UMSBackpackGridWidget::OnEnterItemWidget(UMSItemData* TargetItemData)
 		StarWidgetList.Add(StarWidget);
 	}
 
-	for (auto& StarWidget : StarWidgetList)
+	for (const auto& StarWidget : StarWidgetList)
 	{
-		StarWidget->SetSize(FVector2D(TileSize));
+		if (IsValid(StarWidget))
+		{
+			StarWidget->SetSize(FVector2D(TileSize));
+		}
 	}
 }
 
